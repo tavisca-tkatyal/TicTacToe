@@ -63,6 +63,7 @@ namespace TicTacToe.Models
         }
         public String CheckIfPlayerWinOrNot(int checkPlayerWin, String move)
         {
+            String resultOfWinning="";
             if (checkPlayerWin == 0)
             {
                 if (player1 == move)
@@ -75,6 +76,11 @@ namespace TicTacToe.Models
                 }
 
             }
+            if (resultOfWinning != "")
+            {
+                return resultOfWinning;
+            }
+
             return "";
         }
 
@@ -84,7 +90,7 @@ namespace TicTacToe.Models
             int column;
             int checkPlayerWin = 0; // if player win value is still 0
             String move = board[rowIndex, columnIndex];
-            String resultOfWinning;
+            
             while (row < 3)
             {
                 for (column = 0; column < 3; column++)
@@ -95,11 +101,8 @@ namespace TicTacToe.Models
                         break;
                     }
                 }
-                resultOfWinning = CheckIfPlayerWinOrNot(checkPlayerWin, move);
-                if (resultOfWinning != "")
-                {
-                    return resultOfWinning;
-                }
+                if (CheckIfPlayerWinOrNot(checkPlayerWin, move) != "")
+                        return CheckIfPlayerWinOrNot(checkPlayerWin, move);
                 row++;
             }
             checkPlayerWin = 0;
@@ -114,11 +117,8 @@ namespace TicTacToe.Models
                         break;
                     }
                 }
-                resultOfWinning = CheckIfPlayerWinOrNot(checkPlayerWin, move);
-                if (resultOfWinning != "")
-                {
-                    return resultOfWinning;
-                }
+                if (CheckIfPlayerWinOrNot(checkPlayerWin, move) != "")
+                    return CheckIfPlayerWinOrNot(checkPlayerWin, move);
                 column++;
             }
             checkPlayerWin = 0;
@@ -133,12 +133,9 @@ namespace TicTacToe.Models
                  row++;
                  column++;
              }
-            resultOfWinning = CheckIfPlayerWinOrNot(checkPlayerWin, move);
-            if (resultOfWinning != "")
-            {
-                return resultOfWinning;
-            }
-           
+            if (CheckIfPlayerWinOrNot(checkPlayerWin, move) != "")
+                return CheckIfPlayerWinOrNot(checkPlayerWin, move);
+
             checkPlayerWin = 0;
             row = 0;
             while(row<3 && column>=0)
@@ -151,11 +148,9 @@ namespace TicTacToe.Models
                 row++;
                 column--;
             }
-            resultOfWinning = CheckIfPlayerWinOrNot(checkPlayerWin, move);
-            if (resultOfWinning != "")
-            {
-                return resultOfWinning;
-            }
+            if (CheckIfPlayerWinOrNot(checkPlayerWin, move) != "")
+                return CheckIfPlayerWinOrNot(checkPlayerWin, move);
+
             int countEmptySpace = 0;
             for (row = 0;row < 3;row++)
             {
